@@ -679,6 +679,7 @@ export class Select {
 			css(image, styles);
 		}
 
+		let editorWidth = this.jodit.editor.offsetWidth;
 		const onload = () => {
 			if (
 				image.naturalHeight < image.offsetHeight ||
@@ -686,6 +687,13 @@ export class Select {
 			) {
 				image.style.width = '';
 				image.style.height = '';
+			}
+			if (image.naturalWidth > editorWidth) {
+				image.style.width = (editorWidth - 50) + 'px';
+				image.style.height = Math.round((editorWidth - 50) * (image.naturalHeight / image.naturalWidth)) + 'px';
+			} else {
+				image.style.width = image.naturalWidth + 'px';
+				image.style.height = image.naturalHeight + 'px';
 			}
 			image.removeEventListener('load', onload);
 		};
