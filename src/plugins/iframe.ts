@@ -17,6 +17,7 @@ declare module '../config' {
 		iframeBaseUrl: string;
 		iframeTitle: string;
 		iframeDoctype: string;
+		iframeEncoding: string;
 		iframeStyle: string;
 		iframeCSSLinks: string[];
 	}
@@ -44,6 +45,8 @@ Config.prototype.iframeTitle = 'Jodit Editor';
  * Iframe's DOCTYPE
  */
 Config.prototype.iframeDoctype = '<!DOCTYPE html>';
+
+Config.prototype.iframeEncoding = 'utf-8';
 
 /**
  * You can redefine default page
@@ -186,6 +189,7 @@ export function iframe(editor: IJodit): void {
 							opt.language
 						)}">` +
 						'<head>' +
+						`<meta charset="${opt.iframeEncoding}">` +
 						`<title>${opt.iframeTitle}</title>` +
 						(opt.iframeBaseUrl
 							? `<base href="${opt.iframeBaseUrl}"/>`
